@@ -13,6 +13,7 @@ import java.io.IOException;
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("/view/Game.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 500, 800);
         scene.getStylesheets().add(MainApplication.class.getResource("/css/Style.css").toExternalForm());
@@ -20,7 +21,6 @@ public class MainApplication extends Application {
         stage.setTitle("Tic-Tac-Toe");
         stage.setScene(scene);
         stage.show();
-        
     }
 
 
