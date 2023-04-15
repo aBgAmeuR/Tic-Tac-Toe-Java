@@ -18,8 +18,8 @@ public class MainApplication extends Application {
         scene.getStylesheets().add(MainApplication.class.getResource("/css/Style.css").toExternalForm());
         stage.getIcons().add(new Image(MainApplication.class.getResource("/images/icon.png").openStream()));
         stage.setTitle("Tic-Tac-Toe");
-        
         stage.setScene(scene);
+        
         stage.show();
     }
 
