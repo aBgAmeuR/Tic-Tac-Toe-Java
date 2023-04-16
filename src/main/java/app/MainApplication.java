@@ -19,8 +19,8 @@ public class MainApplication extends Application {
         stage.getIcons().add(new Image(MainApplication.class.getResource("/images/icon.png").openStream()));
         stage.setTitle("Tic-Tac-Toe");
         stage.setScene(scene);
-        
         stage.show();
+
     }
 
 
