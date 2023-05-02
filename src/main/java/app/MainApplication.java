@@ -20,6 +20,7 @@ public class MainApplication extends Application {
         stage.setTitle("Tic-Tac-Toe");
         stage.setScene(scene);
         stage.show();
+
     }
 
 
