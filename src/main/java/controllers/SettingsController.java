@@ -16,10 +16,10 @@ public class SettingsController {
     public void setGameController(GameController gameController) {
         // Récupérer le contrôleur de la vue principale
         this.gameController = gameController;
-        if (gameController.getFirstPlayerIsRandom()) {
+        if (gameController.settings.getFirstPlayerIsRandom()) {
             firstPlayerComboBox.setValue("Aléatoire");
         } else {
-            firstPlayerComboBox.setValue(gameController.getFirstPlayer().getName());
+            firstPlayerComboBox.setValue(gameController.settings.getFirstPlayer().getName());
         }
     }
 
@@ -33,15 +33,7 @@ public class SettingsController {
     @FXML
     public void handleApplyButton(ActionEvent actionEvent) {
         // Appliquer les changements aux paramètres du jeu
-        String selectedFirstPlayer = firstPlayerComboBox.getValue();
-        if (selectedFirstPlayer == "Aléatoire") {
-            gameController.setFirstPlayerIsRandom(true);
-        } else {
-            gameController.setFirstPlayerIsRandom(false);
-            gameController.setFirstPlayer(selectedFirstPlayer);
-        }
-        System.out.println("First player: " + gameController.getFirstPlayer().getName());
-        System.out.println("First player is random: " + gameController.getFirstPlayerIsRandom());
+        gameController.setFirstPlayer(firstPlayerComboBox.getValue());
 
         // TODO: autre paramètres
 

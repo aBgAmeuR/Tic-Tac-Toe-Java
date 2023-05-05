@@ -11,20 +11,19 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import models.Game;
-import models.OSymbol;
-import models.Player;
-import models.XSymbol;
+import models.*;
 
 import java.io.IOException;
 
 public class GameController {
 
     Player player1 = new Player("Joueur 1", new XSymbol());
+
     Player player2 = new Player("Joueur 2", new OSymbol());
+
     Game game;
-    Boolean firstPlayerIsRandom = true;
-    Player firstPlayer = player1;
+
+    Settings settings = new Settings(player1);
 
     public int equalScore = 0;
 
@@ -55,10 +54,10 @@ public class GameController {
     }
 
     private void createGame() {
-        if (firstPlayerIsRandom) {
+        if (settings.getFirstPlayerIsRandom()) {
             game = new Game(player1, player2);
         } else {
-            game = new Game(player1, player2, firstPlayer);
+            game = new Game(player1, player2, settings.getFirstPlayer());
         }
         for (int i = 0; i < gameBoard.getChildren().size(); i++) {
             if (gameBoard.getChildren().get(i) instanceof Button) {
@@ -174,27 +173,17 @@ public class GameController {
     public void setFirstPlayer(String selectedFirstPlayer) {
         switch (selectedFirstPlayer) {
             case "Joueur 1":
-                firstPlayer = player1;
+                settings.setFirstPlayer(player1);
+                settings.setFirstPlayerIsRandom(false);
                 break;
             case "Joueur 2":
-                firstPlayer = player2;
+                settings.setFirstPlayer(player2);
+                settings.setFirstPlayerIsRandom(false);
                 break;
             case "Aléatoire":
-                firstPlayerIsRandom = true;
+                settings.setFirstPlayerIsRandom(true);
                 break;
         }
-    }
-
-    public boolean getFirstPlayerIsRandom() {
-        return firstPlayerIsRandom;
-    }
-
-    public Player getFirstPlayer() {
-        return firstPlayer;
-    }
-
-    public void setFirstPlayerIsRandom(boolean b) {
-        firstPlayerIsRandom = b;
     }
 
     @FXML
