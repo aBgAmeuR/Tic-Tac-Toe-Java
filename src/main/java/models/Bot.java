@@ -6,6 +6,7 @@ public class Bot extends Player {
         super(name, symbol);
     }
 
+
     public void play(Grid grid) {
 
     }
