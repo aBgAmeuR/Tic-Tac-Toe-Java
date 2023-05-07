@@ -147,5 +147,22 @@ public class Grid {
         }
     }
 
+    public int getSize() {
+        return this.size;
+    }
 
+    public Symbol getWinner() {
+        for (int i = 0; i < this.size; i++) {
+            if (checkLine(i)) {
+                return this.grid[i][0];
+            }
+            if (checkColumn(i)) {
+                return this.grid[0][i];
+            }
+        }
+        if (checkDiagonals()) {
+            return this.grid[0][0];
+        }
+        return null;
+    }
 }
