@@ -165,4 +165,8 @@ public class Grid {
         }
         return null;
     }
+
+    public Symbol[][] getGrid() {
+        return this.grid;
+    }
 }

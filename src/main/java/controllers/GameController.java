@@ -3,6 +3,7 @@ package controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,12 +15,15 @@ import javafx.stage.Stage;
 import models.*;
 
 import java.io.IOException;
+import java.util.List;
 
 public class GameController {
 
     Player player1 = new Player("Joueur 1", new XSymbol());
 
     Player player2 = new Player("Joueur 2", new OSymbol());
+
+    Bot bot = new Bot("Bot", new OSymbol());
 
     Game game;
 
@@ -54,7 +58,11 @@ public class GameController {
     }
 
     private void createGame() {
-        if (settings.getFirstPlayerIsRandom()) {
+        if (settings.getIsOnePlayerMode() && settings.getFirstPlayerIsRandom()) {
+            game = new Game(player1, bot);
+        } else if (settings.getIsOnePlayerMode()) {
+            game = new Game(player1, bot, settings.getFirstPlayer());
+        } else if (settings.getFirstPlayerIsRandom()) {
             game = new Game(player1, player2);
         } else {
             game = new Game(player1, player2, settings.getFirstPlayer());
@@ -62,7 +70,7 @@ public class GameController {
         for (int i = 0; i < gameBoard.getChildren().size(); i++) {
             if (gameBoard.getChildren().get(i) instanceof Button) {
                 ((Button) gameBoard.getChildren().get(i)).setText("");
-                ((Button) gameBoard.getChildren().get(i)).getStyleClass().remove("gray");
+                gameBoard.getChildren().get(i).getStyleClass().remove("gray");
             }
         }
         msgEndGame.setVisible(false);
@@ -80,18 +88,40 @@ public class GameController {
         int col = gameBoard.getColumnIndex(button) / 2;
         if (game.makeMove(row, col)) {
             button.setText(game.getCurrentPlayer().getSymbol().toString());
-            if (game.grid.checkWin()) {
-                game.getCurrentPlayer().incrementScore();
-                game.isOver = true;
-                updateScore();
-                showLine();
-            } else if (game.grid.isFull()) {
-                equalScore++;
-                game.isOver = true;
-                updateScore();
-            } else {
-                game.switchPlayer();
+            checkWin();
+        }
+        if (game.getCurrentPlayer() instanceof Bot && !game.isOver) {
+            int[] botMove = bot.play(game.grid, player1.getSymbol());
+            game.makeMove(botMove[0], botMove[1]);
+            Button botButton = getNodeByCoordinate(botMove[0], botMove[1]);
+            assert botButton != null;
+            botButton.setText(game.getCurrentPlayer().getSymbol().toString());
+            checkWin();
+        }
+    }
+
+    private Button getNodeByCoordinate(Integer row, Integer column) {
+        for (Node node : gameBoard.getChildren()) {
+            if (node instanceof Button) {
+                if(GridPane.getRowIndex(node) == (row * 2) && GridPane.getColumnIndex(node) == (column * 2)){
+                    return (Button) node;
+                }
             }
+        }
+        return null;
+    }
+    private void checkWin() {
+        if (game.grid.checkWin()) {
+            game.getCurrentPlayer().incrementScore();
+            game.isOver = true;
+            updateScore();
+            showLine();
+        } else if (game.grid.isFull()) {
+            equalScore++;
+            game.isOver = true;
+            updateScore();
+        } else {
+            game.switchPlayer();
         }
     }
 

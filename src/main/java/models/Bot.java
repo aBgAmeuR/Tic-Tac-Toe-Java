@@ -3,80 +3,125 @@ package models;
 public class Bot extends Player {
 
     private Grid grid;
+    private Symbol opponentSymbol;
 
     public Bot(String name, Symbol symbol) {
         super(name, symbol);
     }
 
-    public void play(Grid grid) {
-        this.grid = grid;
-    }
+    public int[] play(Grid grid, Symbol opponentSymbol) {
+        this.opponentSymbol = opponentSymbol;
+        int bestVal = Integer.MIN_VALUE;
+        int[] bestMove = new int[]{-1, -1};
 
-    public void play() {
-        int bestScore = Integer.MIN_VALUE;
-        int[] bestMove = new int[2];
-        for (int i = 0; i < this.grid.getSize(); i++) {
-            for (int j = 0; j < this.grid.getSize(); j++) {
-                if (this.grid.isEmptyCell(i, j)) {
-                    this.grid.setSymbol(i, j, this.getSymbol());
-                    int score = minimax(this.grid, 0, false);
-                    this.grid.setSymbol(i, j, null);
-                    if (score > bestScore) {
-                        bestScore = score;
+        for (int i = 0; i < grid.getSize(); i++) {
+            for (int j = 0; j < grid.getSize(); j++) {
+                if (grid.isEmptyCell(i, j)) {
+                    grid.setSymbol(i, j, this.getSymbol());
+                    int moveVal = minimax(grid, 0, false);
+                    grid.setSymbol(i, j, null);
+
+                    if (moveVal > bestVal) {
                         bestMove[0] = i;
                         bestMove[1] = j;
+                        bestVal = moveVal;
                     }
                 }
             }
         }
-        this.grid.setSymbol(bestMove[0], bestMove[1], this.getSymbol());
 
+        System.out.printf("The value of the best Move is : %d\n\n", bestVal);
+        return bestMove;
     }
 
     private int minimax(Grid grid, int depth, boolean isMaximizing) {
-        if (grid.checkWin() || depth == 0) {
-            return evaluate(grid);
+        int score = evaluate(grid);
+
+        if (score == 10 || score == -10) {
+            return score;
+        }
+
+        if (grid.isFull()) {
+            return 0;
         }
 
         if (isMaximizing) {
-            int bestScore = Integer.MIN_VALUE;
-            for (int i = 0; i < grid.getSize(); i++) {
-                for (int j = 0; j < grid.getSize(); j++) {
+            int best = Integer.MIN_VALUE;
+
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
                     if (grid.isEmptyCell(i, j)) {
                         grid.setSymbol(i, j, this.getSymbol());
-                        int score = minimax(grid, depth - 1, false);
+                        best = Math.max(best, minimax(grid, depth + 1, false));
                         grid.setSymbol(i, j, null);
-                        bestScore = Math.max(score, bestScore);
                     }
                 }
             }
-            return bestScore;
+            return best;
         } else {
-            int bestScore = Integer.MAX_VALUE;
-            for (int i = 0; i < grid.getSize(); i++) {
-                for (int j = 0; j < grid.getSize(); j++) {
+            int best = Integer.MAX_VALUE;
+
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
                     if (grid.isEmptyCell(i, j)) {
-                        grid.setSymbol(i, j, this.getSymbol());
-                        int score = minimax(grid, depth - 1, true);
+                        grid.setSymbol(i, j, this.getOpponentSymbol());
+                        best = Math.min(best, minimax(grid, depth + 1, true));
                         grid.setSymbol(i, j, null);
-                        bestScore = Math.min(score, bestScore);
                     }
                 }
             }
-            return bestScore;
+            return best;
         }
     }
 
+
     private int evaluate(Grid grid) {
-        if (grid.checkWin()) {
-            if (grid.getWinner() == this.getSymbol()) {
-                return 1;
-            } else if (grid.getWinner() == null) {
-                return 0;
-            } else {
-                return -1;
+        int score = 0;
+        Symbol[][] board = grid.getGrid();
+
+        // Checking rows
+        for (int row = 0; row < 3; row++) {
+            if (board[row][0] == board[row][1] && board[row][1] == board[row][2]) {
+                if (board[row][0] == this.getSymbol()) {
+                    return 10;
+                } else if (board[row][0] == this.getOpponentSymbol()) {
+                    return -10;
+                }
             }
         }
-        return 0;
+
+        // Checking columns
+        for (int col = 0; col < 3; col++) {
+            if (board[0][col] == board[1][col] && board[1][col] == board[2][col]) {
+                if (board[0][col] == this.getSymbol()) {
+                    return 10;
+                } else if (board[0][col] == this.getOpponentSymbol()) {
+                    return -10;
+                }
+            }
+        }
+
+        // Checking diagonals
+        if (board[0][0] == board[1][1] && board[1][1] == board[2][2]) {
+            if (board[0][0] == this.getSymbol()) {
+                return 10;
+            } else if (board[0][0] == this.getOpponentSymbol()) {
+                return -10;
+            }
+        }
+
+        if (board[0][2] == board[1][1] && board[1][1] == board[2][0]) {
+            if (board[0][2] == this.getSymbol()) {
+                return 10;
+            } else if (board[0][2] == this.getOpponentSymbol()) {
+                return -10;
+            }
+        }
+
+        return score;
+    }
+
+    private Symbol getOpponentSymbol() {
+        return opponentSymbol;
     }
 }
