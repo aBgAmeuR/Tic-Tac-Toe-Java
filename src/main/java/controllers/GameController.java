@@ -15,7 +15,6 @@ import javafx.stage.Stage;
 import models.*;
 
 import java.io.IOException;
-import java.util.List;
 
 public class GameController {
 
@@ -202,17 +201,15 @@ public class GameController {
 
     public void setFirstPlayer(String selectedFirstPlayer) {
         switch (selectedFirstPlayer) {
-            case "Joueur 1":
+            case "Joueur 1" -> {
                 settings.setFirstPlayer(player1);
                 settings.setFirstPlayerIsRandom(false);
-                break;
-            case "Joueur 2":
+            }
+            case "Joueur 2" -> {
                 settings.setFirstPlayer(player2);
                 settings.setFirstPlayerIsRandom(false);
-                break;
-            case "Aléatoire":
-                settings.setFirstPlayerIsRandom(true);
-                break;
+            }
+            case "Aléatoire" -> settings.setFirstPlayerIsRandom(true);
         }
     }
 

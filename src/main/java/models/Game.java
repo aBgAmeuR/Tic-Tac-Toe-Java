@@ -1,12 +1,8 @@
 package models;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
-
 public class Game {
 
-    private Player[] players;
+    private final Player[] players;
     private Player currentPlayer;
     public Grid grid;
     public boolean isOver = false;

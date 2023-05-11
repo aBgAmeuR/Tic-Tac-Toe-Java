@@ -29,8 +29,6 @@ public class Bot extends Player {
                 }
             }
         }
-
-        System.out.printf("The value of the best Move is : %d\n\n", bestVal);
         return bestMove;
     }
 
