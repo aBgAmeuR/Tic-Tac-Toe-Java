@@ -71,6 +71,13 @@ Optional features:
 
 ## Screenshots
 
+<p align="center">
+  <img src="img/game.png" height="500px"></a>
+  <img src="img/settings.png" height="300px"></a>
+</p>
+<p align="center">
+<img src="img/rules.png" height="200px"></a>
+</p>
 ## Issues
 
 Please report specific issues, bugs, or feature requests in our issue tracker.
