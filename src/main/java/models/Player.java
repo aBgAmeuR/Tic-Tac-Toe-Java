@@ -3,7 +3,7 @@ package models;
 public class Player {
 
     private String name;
-    private Symbol symbol;
+    public Symbol symbol;
     private int score;
 
     public Player(String name, Symbol symbol) {

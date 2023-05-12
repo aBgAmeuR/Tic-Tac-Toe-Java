@@ -1,10 +1,15 @@
 package models;
 
+import javafx.scene.paint.Color;
+
 public class Symbol {
     private String symbol;
 
+    private Color color;
+
     public Symbol(String symbol) {
         this.symbol = symbol;
+        this.color = Color.WHITE;
     }
 
     public String getSymbol() {
@@ -29,5 +34,13 @@ public class Symbol {
             return false;
         }
         return true;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public Color getColor() {
+        return color;
     }
 }

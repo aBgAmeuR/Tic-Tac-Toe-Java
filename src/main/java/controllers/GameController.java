@@ -192,10 +192,11 @@ public class GameController {
 
         Stage settingsStage = new Stage();
         settingsStage.initModality(Modality.APPLICATION_MODAL);
+        settingsController.setGameController(this);
         settingsStage.setTitle("Paramètres");
         settingsStage.setScene(new Scene(root));
         settingsStage.setResizable(false);
-        settingsController.setGameController(this);
+
         settingsStage.showAndWait();
     }
 
