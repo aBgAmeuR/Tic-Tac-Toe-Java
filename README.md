@@ -47,25 +47,25 @@ If you don't have any friends, you can play against a bot. To do this, you just 
 
 Mandatory features:
 
-- [ ] Title on each window
-- [ ] Multiple windows (modal and non-modal)
-- [ ] Menu bar with options to reset the game, view game rules, and quit the game
+- [x] Title on each window
+- [x] Multiple windows (modal and non-modal)
+- [x] Menu bar with options to reset the game, view game rules, and quit the game
 - [ ] Ability to name the players
-- [ ] Choice of starting player
-- [ ] Game area with 9 squares
-- [ ] Display of the player's symbol on each click
-- [ ] Indication of the current player
-- [ ] End of game with announcement of the winner or a draw
-- [ ] Interface to replay or quit the game
-- [ ] Scoreboard showing the number of wins for each player
+- [x] Choice of starting player
+- [x] Game area with 9 squares
+- [x] Display of the player's symbol on each click
+- [x] Indication of the current player
+- [x] End of game with announcement of the winner or a draw
+- [x] Interface to replay or quit the game
+- [x] Scoreboard showing the number of wins for each player
 
 Optional features:
 
-- [ ] Highlighting of the winning alignment
+- [x] Highlighting of the winning alignment
 - [ ] Use of images for symbols
 - [ ] Customization of symbols
 - [ ] Permanent scoreboard accessible from the menu
-- [ ] "Single player" mode to play against the computer with different levels
+- [x] "Single player" mode to play against the computer with different levels
 - [ ] Ability to choose the grid size for playing variations with 16 squares, 25 squares, or more
 - [ ] Generate a JAR file for the application and add it to the archive. This format allows for publishing Java applications to end users.
 
@@ -76,8 +76,9 @@ Optional features:
   <img src="img/settings.png" height="300px"></a>
 </p>
 <p align="center">
-<img src="img/rules.png" height="200px"></a>
+  <img src="img/rules.png" height="200px"></a>
 </p>
+
 ## Issues
 
 Please report specific issues, bugs, or feature requests in our issue tracker.
