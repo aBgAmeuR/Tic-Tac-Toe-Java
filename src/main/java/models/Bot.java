@@ -2,14 +2,30 @@ package models;
 
 public class Bot extends Player {
 
-    private Grid grid;
     private Symbol opponentSymbol;
 
     public Bot(String name, Symbol symbol) {
         super(name, symbol);
     }
 
-    public int[] play(Grid grid, Symbol opponentSymbol) {
+    public int[] play(Grid grid, Symbol opponentSymbol, int difficultyLevel) {
+        if (difficultyLevel == 1) {
+            return playEasy(grid);
+        } else {
+            return playHard(grid, opponentSymbol);
+        }
+    }
+
+    private int[] playEasy(Grid grid) {
+        int[] move = new int[2];
+        do {
+            move[0] = (int) (Math.random() * grid.getSize());
+            move[1] = (int) (Math.random() * grid.getSize());
+        } while (!grid.isEmptyCell(move[0], move[1]));
+        return move;
+    }
+
+    private int[] playHard(Grid grid, Symbol opponentSymbol) {
         this.opponentSymbol = opponentSymbol;
         int bestVal = Integer.MIN_VALUE;
         int[] bestMove = new int[]{-1, -1};
@@ -43,8 +59,9 @@ public class Bot extends Player {
             return 0;
         }
 
+        int best;
         if (isMaximizing) {
-            int best = Integer.MIN_VALUE;
+            best = Integer.MIN_VALUE;
 
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
@@ -55,9 +72,8 @@ public class Bot extends Player {
                     }
                 }
             }
-            return best;
         } else {
-            int best = Integer.MAX_VALUE;
+            best = Integer.MAX_VALUE;
 
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
@@ -68,8 +84,8 @@ public class Bot extends Player {
                     }
                 }
             }
-            return best;
         }
+        return best;
     }
 
 

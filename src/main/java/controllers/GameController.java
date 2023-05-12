@@ -90,7 +90,7 @@ public class GameController {
             checkWin();
         }
         if (game.getCurrentPlayer() instanceof Bot && !game.isOver) {
-            int[] botMove = bot.play(game.grid, player1.getSymbol());
+            int[] botMove = bot.play(game.grid, player1.getSymbol(), settings.getDifficultyLevel());
             game.makeMove(botMove[0], botMove[1]);
             Button botButton = getNodeByCoordinate(botMove[0], botMove[1]);
             assert botButton != null;

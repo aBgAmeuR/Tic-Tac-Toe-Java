@@ -7,6 +7,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -36,6 +37,49 @@
             </FXCollections>
         </items>
     </ComboBox>
+   <Separator prefWidth="200.0" />
+   <HBox spacing="10.0">
+      <children>
+         <VBox spacing="10.0">
+            <children>
+               <Label text="Combien de joueur ?" textFill="WHITE">
+                  <font>
+                     <Font name="Bauhaus 93" size="18.0" />
+                  </font>
+               </Label>
+               <HBox alignment="CENTER_LEFT" spacing="5.0">
+                  <children>
+                     <Label text="1" textFill="WHITE">
+                        <font>
+                           <Font name="Bauhaus 93" size="18.0" />
+                        </font>
+                     </Label>
+                     <Slider blockIncrement="1.0" majorTickUnit="1.0" max="2.0" maxWidth="-Infinity" min="1.0" minorTickCount="1" prefWidth="60.0" value="1.0" />
+                  </children>
+               </HBox>
+            </children>
+         </VBox>
+         <VBox layoutX="10.0" layoutY="10.0" spacing="10.0">
+            <children>
+               <Label text="Niveau du BOT" textFill="WHITE">
+                  <font>
+                     <Font name="Bauhaus 93" size="18.0" />
+                  </font>
+               </Label>
+               <HBox alignment="CENTER_LEFT" spacing="5.0">
+                  <children>
+                     <Label text="2" textFill="WHITE">
+                        <font>
+                           <Font name="Bauhaus 93" size="18.0" />
+                        </font>
+                     </Label>
+                     <Slider blockIncrement="1.0" max="2.0" maxWidth="-Infinity" min="1.0" prefWidth="60.0" value="1.0" />
+                  </children>
+               </HBox>
+            </children>
+         </VBox>
+      </children>
+   </HBox>
    <Separator prefWidth="200.0">
       <VBox.margin>
          <Insets top="16.0" />
