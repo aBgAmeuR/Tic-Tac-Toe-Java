@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -87,6 +88,8 @@ public class GameController {
         int col = gameBoard.getColumnIndex(button) / 2;
         if (game.makeMove(row, col)) {
             button.setText(game.getCurrentPlayer().getSymbol().toString());
+            int[] rgbSymbol = game.getCurrentPlayer().getSymbol().getRGB();
+            button.setStyle("-fx-text-fill: rgb(" + rgbSymbol[0] + "," + rgbSymbol[1] + "," + rgbSymbol[2] + ");");
             checkWin();
         }
         if (game.getCurrentPlayer() instanceof Bot && !game.isOver) {

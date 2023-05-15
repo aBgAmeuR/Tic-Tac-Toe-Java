@@ -68,6 +68,9 @@ public class SettingsController {
 
         int sliderPlayerCountValue = (int) sliderPlayerCount.getValue() / 10;
         gameController.settings.setIsOnePlayerMode(sliderPlayerCountValue < 10);
+
+        gameController.player1.symbol.setColor(player1Color.getValue());
+        gameController.player2.symbol.setColor(player2Color.getValue());
         // TODO: autre paramètres
 
         // Fermer la fenêtre modale après avoir appliqué les changements
@@ -114,15 +117,6 @@ public class SettingsController {
 
        player1Color.setValue(gameController.player1.symbol.getColor());
        player2Color.setValue(gameController.player2.symbol.getColor());
-
-       player1Color.setOnAction((e) -> {
-           gameController.player1.symbol.setColor(player1Color.getValue());
-       });
-
-       player2Color.setOnAction((e) -> {
-           gameController.player2.symbol.setColor(player2Color.getValue());
-       });
-
     }
 
 }

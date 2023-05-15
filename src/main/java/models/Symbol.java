@@ -43,4 +43,11 @@ public class Symbol {
     public Color getColor() {
         return color;
     }
+    public int[] getRGB() {
+        int[] rgb = new int[3];
+        rgb[0] = (int) (color.getRed() * 255);
+        rgb[1] = (int) (color.getGreen() * 255);
+        rgb[2] = (int) (color.getBlue() * 255);
+        return rgb;
+    }
 }
