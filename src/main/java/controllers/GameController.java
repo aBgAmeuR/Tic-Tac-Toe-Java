@@ -23,7 +23,7 @@ public class GameController {
 
     Player player2 = new Player("Joueur 2", new OSymbol());
 
-    Bot bot = new Bot("Bot", new OSymbol());
+    Bot bot = new Bot("Pascal", new OSymbol());
 
     Game game;
 
@@ -47,10 +47,20 @@ public class GameController {
     private VBox msgEndGame;
 
     @FXML
-    private Button replayButton;
+    private Text winnerText;
 
     @FXML
-    private Text winnerText;
+    private VBox player1current;
+
+    @FXML
+    private VBox player2current;
+
+    @FXML
+    private VBox equalityVBox;
+
+    @FXML
+    private Text player2Text;
+
 
     @FXML
     public void initialize() {
@@ -74,12 +84,14 @@ public class GameController {
                 gameBoard.getChildren().get(i).setStyle("");
             }
         }
+        player1current.getStyleClass().remove("gray");
+        player2current.getStyleClass().remove("gray");
         msgEndGame.setVisible(false);
         msgEndGame.setDisable(true);
         msgEndGame.setManaged(false);
-        player1Score.getStyleClass().remove("gray");
-        player2Score.getStyleClass().remove("gray");
-        equalityScore.getStyleClass().remove("gray");
+        indicationCurrentPlayer();
+        equalityVBox.getStyleClass().add("gray");
+        updateScore();
     }
     @FXML
     void handleButtonClick(ActionEvent event) {
@@ -89,7 +101,6 @@ public class GameController {
         int col = gameBoard.getColumnIndex(button) / 2;
         if (game.makeMove(row, col)) {
             placeSymbol(button, game.getCurrentPlayer().getSymbol());
-            checkWin();
         }
         // S'il y a un bot, on fait jouer le bot
         if (game.getCurrentPlayer() instanceof Bot && !game.isOver) {
@@ -98,7 +109,6 @@ public class GameController {
             Button botButton = getNodeByCoordinate(botMove[0], botMove[1]);
             assert botButton != null;
             placeSymbol(botButton, bot.getSymbol());
-            checkWin();
         }
     }
 
@@ -106,6 +116,19 @@ public class GameController {
         button.setText(symbol.toString());
         int[] rgbSymbol = symbol.getRGB();
         button.setStyle("-fx-text-fill: rgb(" + rgbSymbol[0] + "," + rgbSymbol[1] + "," + rgbSymbol[2] + ");");
+        checkWin();
+    }
+
+    private void indicationCurrentPlayer() {
+        if (game.getCurrentPlayer().getSymbol() == player1.getSymbol()) {
+            System.out.println("player1");
+            player2current.getStyleClass().add("gray");
+            player1current.getStyleClass().remove("gray");
+        } else {
+            System.out.println("player2");
+            player1current.getStyleClass().add("gray");
+            player2current.getStyleClass().remove("gray");
+        }
     }
 
     private Button getNodeByCoordinate(Integer row, Integer column) {
@@ -120,23 +143,35 @@ public class GameController {
     }
     private void checkWin() {
         if (game.grid.checkWin()) {
+            equalityVBox.getStyleClass().remove("gray");
             game.getCurrentPlayer().incrementScore();
             game.isOver = true;
             updateScore();
             showLine();
         } else if (game.grid.isFull()) {
+            equalityVBox.getStyleClass().remove("gray");
             equalScore++;
             game.isOver = true;
             updateScore();
         } else {
             game.switchPlayer();
+            indicationCurrentPlayer();
         }
     }
 
     void updateScore() {
         player1Score.setText(String.valueOf(player1.getScore()));
-        player2Score.setText(String.valueOf(player2.getScore()));
+        if (settings.getIsOnePlayerMode()) {
+            player2Score.setText(String.valueOf(bot.getScore()));
+        } else {
+            player2Score.setText(String.valueOf(player2.getScore()));
+        }
         equalityScore.setText(String.valueOf(equalScore));
+        if (settings.getIsOnePlayerMode()) {
+            player2Text.setText(bot.getName());
+        } else {
+            player2Text.setText(player2.getName());
+        }
         if (game.isOver) {
             msgEndGame.setVisible(true);
             msgEndGame.setDisable(false);
@@ -190,6 +225,7 @@ public class GameController {
         rulesStage.setScene(new Scene(root));
         rulesStage.setResizable(false);
         rulesStage.showAndWait();
+        updateScore();
     }
 
     @FXML
