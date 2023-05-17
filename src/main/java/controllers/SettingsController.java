@@ -71,6 +71,8 @@ public class SettingsController {
 
         gameController.player1.symbol.setColor(player1Color.getValue());
         gameController.player2.symbol.setColor(player2Color.getValue());
+        gameController.bot.symbol.setColor(player2Color.getValue());
+
         // TODO: autre paramètres
 
         // Fermer la fenêtre modale après avoir appliqué les changements

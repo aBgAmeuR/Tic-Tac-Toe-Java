@@ -69,39 +69,39 @@
                   <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="150.0" />
                </rowConstraints>
                <children>
-                  <Button contentDisplay="CENTER" minHeight="150.0" minWidth="150.0" onAction="#handleButtonClick" style="-fx-background-color: transparent;" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                  <Button contentDisplay="CENTER" minHeight="150.0" minWidth="150.0" onAction="#handleButtonClick" styleClass="btnGrid" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0">
                      <font>
                         <Font name="Bauhaus 93" size="64.0" />
                      </font></Button>
-                  <Button contentDisplay="CENTER" layoutX="207.0" layoutY="35.0" minHeight="150.0" minWidth="150.0" onAction="#handleButtonClick" style="-fx-background-color: transparent;" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                  <Button contentDisplay="CENTER" layoutX="207.0" layoutY="35.0" minHeight="150.0" minWidth="150.0" onAction="#handleButtonClick" styleClass="btnGrid" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="0">
                      <font>
                         <Font name="Bauhaus 93" size="64.0" />
                      </font></Button>
-                  <Button contentDisplay="CENTER" layoutX="242.0" layoutY="35.0" minHeight="150.0" minWidth="150.0" onAction="#handleButtonClick" style="-fx-background-color: transparent;" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="0">
+                  <Button contentDisplay="CENTER" layoutX="242.0" layoutY="35.0" minHeight="150.0" minWidth="150.0" onAction="#handleButtonClick" styleClass="btnGrid" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="0">
                      <font>
                         <Font name="Bauhaus 93" size="64.0" />
                      </font></Button>
-                  <Button contentDisplay="CENTER" layoutX="77.0" layoutY="35.0" minHeight="150.0" minWidth="150.0" onAction="#handleButtonClick" style="-fx-background-color: transparent;" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                  <Button contentDisplay="CENTER" layoutX="77.0" layoutY="35.0" minHeight="150.0" minWidth="150.0" onAction="#handleButtonClick" styleClass="btnGrid" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="2">
                      <font>
                         <Font name="Bauhaus 93" size="64.0" />
                      </font></Button>
-                  <Button contentDisplay="CENTER" layoutX="77.0" layoutY="35.0" minHeight="150.0" minWidth="150.0" onAction="#handleButtonClick" style="-fx-background-color: transparent;" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                  <Button contentDisplay="CENTER" layoutX="77.0" layoutY="35.0" minHeight="150.0" minWidth="150.0" onAction="#handleButtonClick" styleClass="btnGrid" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <font>
                         <Font name="Bauhaus 93" size="64.0" />
                      </font></Button>
-                  <Button contentDisplay="CENTER" layoutX="77.0" layoutY="120.0" minHeight="150.0" minWidth="150.0" onAction="#handleButtonClick" style="-fx-background-color: transparent;" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                  <Button contentDisplay="CENTER" layoutX="77.0" layoutY="120.0" minHeight="150.0" minWidth="150.0" onAction="#handleButtonClick" styleClass="btnGrid" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
                      <font>
                         <Font name="Bauhaus 93" size="64.0" />
                      </font></Button>
-                  <Button contentDisplay="CENTER" layoutX="77.0" layoutY="35.0" minHeight="150.0" minWidth="150.0" onAction="#handleButtonClick" style="-fx-background-color: transparent;" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                  <Button contentDisplay="CENTER" layoutX="77.0" layoutY="35.0" minHeight="150.0" minWidth="150.0" onAction="#handleButtonClick" styleClass="btnGrid" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="4">
                      <font>
                         <Font name="Bauhaus 93" size="64.0" />
                      </font></Button>
-                  <Button contentDisplay="CENTER" layoutX="187.0" layoutY="120.0" minHeight="150.0" minWidth="150.0" onAction="#handleButtonClick" style="-fx-background-color: transparent;" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                  <Button contentDisplay="CENTER" layoutX="187.0" layoutY="120.0" minHeight="150.0" minWidth="150.0" onAction="#handleButtonClick" styleClass="btnGrid" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4">
                      <font>
                         <Font name="Bauhaus 93" size="64.0" />
                      </font></Button>
-                  <Button contentDisplay="CENTER" layoutX="187.0" layoutY="230.0" minHeight="150.0" minWidth="150.0" onAction="#handleButtonClick" style="-fx-background-color: transparent;" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                  <Button contentDisplay="CENTER" layoutX="187.0" layoutY="230.0" minHeight="150.0" minWidth="150.0" onAction="#handleButtonClick" styleClass="btnGrid" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="4">
                      <font>
                         <Font name="Bauhaus 93" size="64.0" />
                      </font></Button>

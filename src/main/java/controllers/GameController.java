@@ -71,6 +71,7 @@ public class GameController {
             if (gameBoard.getChildren().get(i) instanceof Button) {
                 ((Button) gameBoard.getChildren().get(i)).setText("");
                 gameBoard.getChildren().get(i).getStyleClass().remove("gray");
+                gameBoard.getChildren().get(i).setStyle("");
             }
         }
         msgEndGame.setVisible(false);
@@ -87,19 +88,24 @@ public class GameController {
         int row = gameBoard.getRowIndex(button) / 2;
         int col = gameBoard.getColumnIndex(button) / 2;
         if (game.makeMove(row, col)) {
-            button.setText(game.getCurrentPlayer().getSymbol().toString());
-            int[] rgbSymbol = game.getCurrentPlayer().getSymbol().getRGB();
-            button.setStyle("-fx-text-fill: rgb(" + rgbSymbol[0] + "," + rgbSymbol[1] + "," + rgbSymbol[2] + ");");
+            placeSymbol(button, game.getCurrentPlayer().getSymbol());
             checkWin();
         }
+        // S'il y a un bot, on fait jouer le bot
         if (game.getCurrentPlayer() instanceof Bot && !game.isOver) {
             int[] botMove = bot.play(game.grid, player1.getSymbol(), settings.getDifficultyLevel());
             game.makeMove(botMove[0], botMove[1]);
             Button botButton = getNodeByCoordinate(botMove[0], botMove[1]);
             assert botButton != null;
-            botButton.setText(game.getCurrentPlayer().getSymbol().toString());
+            placeSymbol(botButton, bot.getSymbol());
             checkWin();
         }
+    }
+
+    private void placeSymbol(Button button, Symbol symbol) {
+        button.setText(symbol.toString());
+        int[] rgbSymbol = symbol.getRGB();
+        button.setStyle("-fx-text-fill: rgb(" + rgbSymbol[0] + "," + rgbSymbol[1] + "," + rgbSymbol[2] + ");");
     }
 
     private Button getNodeByCoordinate(Integer row, Integer column) {
