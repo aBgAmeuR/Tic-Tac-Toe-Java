@@ -54,7 +54,7 @@ Mandatory features:
 - [x] Choice of starting player
 - [x] Game area with 9 squares
 - [x] Display of the player's symbol on each click
-- [x] Indication of the current player
+- [ ] Indication of the current player
 - [x] End of game with announcement of the winner or a draw
 - [x] Interface to replay or quit the game
 - [x] Scoreboard showing the number of wins for each player
@@ -63,7 +63,7 @@ Optional features:
 
 - [x] Highlighting of the winning alignment
 - [ ] Use of images for symbols
-- [ ] Customization of symbols
+- [x] Customization of symbols
 - [ ] Permanent scoreboard accessible from the menu
 - [x] "Single player" mode to play against the computer with different levels
 - [ ] Ability to choose the grid size for playing variations with 16 squares, 25 squares, or more
