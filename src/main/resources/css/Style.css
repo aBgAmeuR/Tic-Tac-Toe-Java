@@ -5,3 +5,6 @@
 #whiteTextComboBox > .list-cell {
     -fx-text-fill: white;
 }
+.btnGrid {
+    -fx-background-color: transparent;
+}
