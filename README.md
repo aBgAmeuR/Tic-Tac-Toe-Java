@@ -54,7 +54,7 @@ Mandatory features:
 - [x] Choice of starting player
 - [x] Game area with 9 squares
 - [x] Display of the player's symbol on each click
-- [ ] Indication of the current player
+- [x] Indication of the current player
 - [x] End of game with announcement of the winner or a draw
 - [x] Interface to replay or quit the game
 - [x] Scoreboard showing the number of wins for each player
