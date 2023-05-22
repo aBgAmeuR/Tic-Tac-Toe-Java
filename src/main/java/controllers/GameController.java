@@ -121,11 +121,9 @@ public class GameController {
 
     private void indicationCurrentPlayer() {
         if (game.getCurrentPlayer().getSymbol() == player1.getSymbol()) {
-            System.out.println("player1");
             player2current.getStyleClass().add("gray");
             player1current.getStyleClass().remove("gray");
         } else {
-            System.out.println("player2");
             player1current.getStyleClass().add("gray");
             player2current.getStyleClass().remove("gray");
         }

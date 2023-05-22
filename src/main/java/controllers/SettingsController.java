@@ -2,11 +2,9 @@ package controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -41,6 +39,15 @@ public class SettingsController {
     @FXML
     private Text player2Name;
 
+    @FXML
+    private TextField player1Pseudo;
+
+    @FXML
+    private TextField player2Pseudo;
+
+    @FXML
+    private HBox player2PseudoHBox;
+
     public void setGameController(GameController gameController) {
         // Récupérer le contrôleur de la vue principale
         this.gameController = gameController;
@@ -73,7 +80,17 @@ public class SettingsController {
         gameController.player2.symbol.setColor(player2Color.getValue());
         gameController.bot.symbol.setColor(player2Color.getValue());
 
-        // TODO: autre paramètres
+        gameController.player1.setName(player1Pseudo.getText());
+        if (gameController.settings.getIsOnePlayerMode()) {
+            if (gameController.settings.getDifficultyLevel() == 1) {
+                gameController.bot.setName("Mattéo");
+            } else {
+                gameController.bot.setName("Pascal");
+            }
+            gameController.bot.setName(player2Pseudo.getText());
+        } else {
+            gameController.player2.setName(player2Pseudo.getText());
+        }
 
         // Fermer la fenêtre modale après avoir appliqué les changements
         Stage stage = (Stage) firstPlayerComboBox.getScene().getWindow();
@@ -101,24 +118,50 @@ public class SettingsController {
         int sliderValue2 = (int) sliderPlayerCount.getValue() / 10;
         labelPlayerCount.setText(String.valueOf(sliderValue2 < 10 ? 1 : 2));
 
-       sliderDifficultyLevel.addEventHandler(MouseEvent.MOUSE_RELEASED, (e) -> {
-           int sliderValue = (int) sliderDifficultyLevel.getValue() / 10;
-           labelDifficultyLevel.setText(String.valueOf(sliderValue < 10 ? 1 : 2));
-       });
+        sliderDifficultyLevel.addEventHandler(MouseEvent.MOUSE_RELEASED, (e) -> {
+            int sliderValue = (int) sliderDifficultyLevel.getValue() / 10;
+            labelDifficultyLevel.setText(String.valueOf(sliderValue < 10 ? 1 : 2));
+            if (sliderValue < 10) {
+                player2Pseudo.setText("Mattéo");
+            } else {
+                player2Pseudo.setText("Pascal");
+            }
+        });
 
-       sliderPlayerCount.addEventHandler(MouseEvent.MOUSE_RELEASED, (e) -> {
-           int sliderValue = (int) sliderPlayerCount.getValue() / 10;
-           labelPlayerCount.setText(String.valueOf(sliderValue < 10 ? 1 : 2));
-           boxBotLevel.setDisable(sliderValue > 10);
-           if (sliderValue > 10) {
-               player2Name.setText("Joueur 2");
-              } else {
+        sliderPlayerCount.addEventHandler(MouseEvent.MOUSE_RELEASED, (e) -> {
+            int sliderValue = (int) sliderPlayerCount.getValue() / 10;
+            labelPlayerCount.setText(String.valueOf(sliderValue < 10 ? 1 : 2));
+            boxBotLevel.setDisable(sliderValue > 10);
+            if (sliderValue > 10) {
+                player2Name.setText("Joueur 2");
+                player2Pseudo.setText(gameController.player2.getName());
+                player2PseudoHBox.setDisable(false);
+            } else {
                 player2Name.setText("Bot");
-           }
-       });
+                if (gameController.settings.getDifficultyLevel() == 1) {
+                    player2Pseudo.setText("Mattéo");
+                } else {
+                    player2Pseudo.setText("Pascal");
+                }
+                player2PseudoHBox.setDisable(true);
+            }
+        });
 
-       player1Color.setValue(gameController.player1.symbol.getColor());
-       player2Color.setValue(gameController.player2.symbol.getColor());
+        player1Color.setValue(gameController.player1.symbol.getColor());
+        player2Color.setValue(gameController.player2.symbol.getColor());
+
+        player1Pseudo.setText(gameController.player1.getName());
+        if (gameController.settings.getIsOnePlayerMode()) {
+            if (gameController.settings.getDifficultyLevel() == 1) {
+                player2Pseudo.setText("Mattéo");
+            } else {
+                player2Pseudo.setText("Pascal");
+            }
+            player2PseudoHBox.setDisable(true);
+        } else {
+            player2Pseudo.setText(gameController.player2.getName());
+            player2PseudoHBox.setDisable(false);
+        }
     }
 
 }

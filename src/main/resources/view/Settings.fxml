@@ -9,6 +9,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -91,6 +92,16 @@
          <Font name="Bauhaus 93" size="24.0" />
       </font>
    </Text>
+   <HBox alignment="CENTER_LEFT">
+      <children>
+         <Label text="Pseudo : " textFill="WHITE">
+            <font>
+               <Font name="Bauhaus 93" size="18.0" />
+            </font>
+         </Label>
+         <TextField fx:id="player1Pseudo" maxWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 5; text-fill: while; -fx-cursor: hand;" />
+      </children>
+   </HBox>
    <HBox>
       <children>
          <ColorPicker fx:id="player1Color" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 5; -fx-cursor: hand;" />
@@ -102,6 +113,16 @@
          <Font name="Bauhaus 93" size="24.0" />
       </font>
    </Text>
+   <HBox fx:id="player2PseudoHBox" alignment="CENTER_LEFT">
+      <children>
+         <Label text="Pseudo : " textFill="WHITE">
+            <font>
+               <Font name="Bauhaus 93" size="18.0" />
+            </font>
+         </Label>
+         <TextField fx:id="player2Pseudo" maxWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 5; text-fill: while; -fx-cursor: hand;" />
+      </children>
+   </HBox>
    <HBox>
       <children>
          <ColorPicker fx:id="player2Color" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 5; -fx-cursor: hand;" />

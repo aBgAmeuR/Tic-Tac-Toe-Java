@@ -11,7 +11,7 @@ public class Settings {
         this.firstPlayer = firstPlayer;
         this.firstPlayerIsRandom = false;
         this.isOnePlayerMode = true;
-        this.difficultyLevel = 1;
+        this.difficultyLevel = 2;
     }
 
     public Player getFirstPlayer() {
