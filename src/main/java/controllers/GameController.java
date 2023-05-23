@@ -93,6 +93,7 @@ public class GameController {
         equalityVBox.getStyleClass().add("gray");
         updateScore();
     }
+
     @FXML
     void handleButtonClick(ActionEvent event) {
         // Quand un joueur clique sur un bouton de la grille
@@ -139,6 +140,7 @@ public class GameController {
         }
         return null;
     }
+
     private void checkWin() {
         if (game.grid.checkWin()) {
             equalityVBox.getStyleClass().remove("gray");
