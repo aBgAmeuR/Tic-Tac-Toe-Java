@@ -99,7 +99,7 @@ public class SettingsController {
 
     private void init() {
         if (gameController.settings.getIsOnePlayerMode()) {
-            sliderPlayerCount.setValue(sliderDifficultyLevel.getMin() + 10);
+            sliderPlayerCount.setValue(sliderPlayerCount.getMin() + 10);
             boxBotLevel.setDisable(false);
         } else {
             sliderPlayerCount.setValue(sliderPlayerCount.getMax() - 10);
@@ -110,8 +110,11 @@ public class SettingsController {
         } else {
             player2Name.setText("Bot");
         }
-
-        sliderDifficultyLevel.setValue(gameController.settings.getDifficultyLevel() * 10);
+        if (gameController.settings.getDifficultyLevel() == 1) {
+            sliderDifficultyLevel.setValue(sliderDifficultyLevel.getMin() + 10);
+        } else {
+            sliderDifficultyLevel.setValue(sliderDifficultyLevel.getMax() - 10);
+        };
 
         int sliderValue1 = (int) sliderDifficultyLevel.getValue() / 10;
         labelDifficultyLevel.setText(String.valueOf(sliderValue1 < 10 ? 1 : 2));
