@@ -67,7 +67,7 @@ Optional features:
 - [ ] Permanent scoreboard accessible from the menu
 - [x] "Single player" mode to play against the computer with different levels
 - [ ] Ability to choose the grid size for playing variations with 16 squares, 25 squares, or more
-- [ ] Generate a JAR file for the application and add it to the archive. This format allows for publishing Java applications to end users.
+- [x] Generate a JAR file for the application and add it to the archive. This format allows for publishing Java applications to end users.
 
 ## Screenshots
 
