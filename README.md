@@ -95,4 +95,34 @@ Contributions are what make the open source community an amazing place to learn,
 
 Distributed under the GNU General Public License v3.0. See `LICENSE` for more information.
 
-
+```
+.
+└── main/
+    ├── java/
+    │   ├── app/
+    │   │   ├── App.java
+    │   │   └── MainApplication.java
+    │   ├── controllers/
+    │   │   ├── GameController.java
+    │   │   ├── RulesController.java
+    │   │   └── SettingsController.java
+    │   ├── models/
+    │   │   ├── Bot.java
+    │   │   ├── Game.java
+    │   │   ├── Grid.java
+    │   │   ├── OSymbol.java
+    │   │   ├── Player.java
+    │   │   ├── Settings.java
+    │   │   ├── Symbol.java
+    │   │   └── XSymbol.java
+    │   └── module-info.java
+    └── ressources/
+        ├── css/
+        │   └── Style.css
+        ├── images/
+        │   └── icon.png
+        └── view/
+            ├── Game.fxml
+            ├── Rules.fxml
+            └── Settings.fxml
+```
