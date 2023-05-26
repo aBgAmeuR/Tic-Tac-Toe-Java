@@ -50,7 +50,7 @@ Mandatory features:
 - [x] Title on each window
 - [x] Multiple windows (modal and non-modal)
 - [x] Menu bar with options to reset the game, view game rules, and quit the game
-- [ ] Ability to name the players
+- [x] Ability to name the players
 - [x] Choice of starting player
 - [x] Game area with 9 squares
 - [x] Display of the player's symbol on each click
