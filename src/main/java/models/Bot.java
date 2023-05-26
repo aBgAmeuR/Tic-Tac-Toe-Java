@@ -8,6 +8,7 @@ public class Bot extends Player {
         super(name, symbol);
     }
 
+    // Retourne un tableau de 2 entiers qui représente les coordonnées du coup à jouer
     public int[] play(Grid grid, Symbol opponentSymbol, int difficultyLevel) {
         if (difficultyLevel == 1) {
             return playEasy(grid);
@@ -16,6 +17,7 @@ public class Bot extends Player {
         }
     }
 
+    // Retourne les coordonnées du coup à jouer en mode facile
     private int[] playEasy(Grid grid) {
         int[] move = new int[2];
         do {
@@ -25,10 +27,11 @@ public class Bot extends Player {
         return move;
     }
 
+    // Retourne les coordonnées du coup à jouer en mode difficile
     private int[] playHard(Grid grid, Symbol opponentSymbol) {
         this.opponentSymbol = opponentSymbol;
         int bestVal = Integer.MIN_VALUE;
-        int[] bestMove = new int[]{-1, -1};
+        int[] bestMove = new int[] { -1, -1 };
 
         for (int i = 0; i < grid.getSize(); i++) {
             for (int j = 0; j < grid.getSize(); j++) {
@@ -48,6 +51,7 @@ public class Bot extends Player {
         return bestMove;
     }
 
+    // Retourne la valeur du meilleur coup possible
     private int minimax(Grid grid, int depth, boolean isMaximizing) {
         int score = evaluate(grid);
 
@@ -88,12 +92,12 @@ public class Bot extends Player {
         return best;
     }
 
-
+    // Retourne la valeur du plateau
     private int evaluate(Grid grid) {
         int score = 0;
         Symbol[][] board = grid.getGrid();
 
-        // Checking rows
+        // Regarder les lignes
         for (int row = 0; row < 3; row++) {
             if (board[row][0] == board[row][1] && board[row][1] == board[row][2]) {
                 if (board[row][0] == this.getSymbol()) {
@@ -104,7 +108,7 @@ public class Bot extends Player {
             }
         }
 
-        // Checking columns
+        // Regarder les colonnes
         for (int col = 0; col < 3; col++) {
             if (board[0][col] == board[1][col] && board[1][col] == board[2][col]) {
                 if (board[0][col] == this.getSymbol()) {
@@ -115,7 +119,7 @@ public class Bot extends Player {
             }
         }
 
-        // Checking diagonals
+        // Regarder une diagonale
         if (board[0][0] == board[1][1] && board[1][1] == board[2][2]) {
             if (board[0][0] == this.getSymbol()) {
                 return 10;
@@ -124,6 +128,7 @@ public class Bot extends Player {
             }
         }
 
+        // Regarder l'autre diagonale
         if (board[0][2] == board[1][1] && board[1][1] == board[2][0]) {
             if (board[0][2] == this.getSymbol()) {
                 return 10;
@@ -135,6 +140,7 @@ public class Bot extends Player {
         return score;
     }
 
+    // Retourne le symbole de l'adversaire
     private Symbol getOpponentSymbol() {
         return opponentSymbol;
     }

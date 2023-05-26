@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -33,44 +32,36 @@ public class GameController {
 
     @FXML
     private GridPane gameBoard;
-
     @FXML
     private Text player1Score;
-
     @FXML
     private Text player2Score;
-
     @FXML
     private Text equalityScore;
-
     @FXML
     private VBox msgEndGame;
-
     @FXML
     private Text winnerText;
-
     @FXML
     private VBox player1current;
-
     @FXML
     private VBox player2current;
-
     @FXML
     private VBox equalityVBox;
-
     @FXML
     private Text player2Text;
-
     @FXML
     private Text player1Text;
 
-
+    // Quand le contrôleur est créé, on initialise le jeu
     @FXML
     public void initialize() {
         createGame();
     }
 
+    // Crée un nouveau jeu
     private void createGame() {
+        // On crée le jeu en fonction des paramètres
         if (settings.getIsOnePlayerMode() && settings.getFirstPlayerIsRandom()) {
             game = new Game(player1, bot);
         } else if (settings.getIsOnePlayerMode()) {
@@ -80,6 +71,7 @@ public class GameController {
         } else {
             game = new Game(player1, player2, settings.getFirstPlayer());
         }
+        // Reset le plateau de jeu
         for (int i = 0; i < gameBoard.getChildren().size(); i++) {
             if (gameBoard.getChildren().get(i) instanceof Button) {
                 ((Button) gameBoard.getChildren().get(i)).setText("");
@@ -87,6 +79,7 @@ public class GameController {
                 gameBoard.getChildren().get(i).setStyle("");
             }
         }
+        // Reset les messages de fin de jeu et les scores
         player1current.getStyleClass().remove("gray");
         player2current.getStyleClass().remove("gray");
         msgEndGame.setVisible(false);
@@ -95,7 +88,7 @@ public class GameController {
         indicationCurrentPlayer();
         equalityVBox.getStyleClass().add("gray");
         updateScore();
-
+        // Si le joueur qui commence est un bot, on fait jouer le bot
         if (game.getCurrentPlayer() instanceof Bot) {
             int[] botMove = bot.play(game.grid, player1.getSymbol(), settings.getDifficultyLevel());
             game.makeMove(botMove[0], botMove[1]);
@@ -104,7 +97,7 @@ public class GameController {
             placeSymbol(botButton, bot.getSymbol());
         }
     }
-
+    // Si le joueur clique sur la grille
     @FXML
     void handleButtonClick(ActionEvent event) {
         // Quand un joueur clique sur un bouton de la grille
@@ -124,6 +117,7 @@ public class GameController {
         }
     }
 
+    // Place le symbole sur le bouton
     private void placeSymbol(Button button, Symbol symbol) {
         button.setText(symbol.toString());
         int[] rgbSymbol = symbol.getRGB();
@@ -131,6 +125,7 @@ public class GameController {
         checkWin();
     }
 
+    // Indique le joueur courant en ajoutant une classe CSS
     private void indicationCurrentPlayer() {
         if (game.getCurrentPlayer().getSymbol() == player1.getSymbol()) {
             player2current.getStyleClass().add("gray");
@@ -141,6 +136,7 @@ public class GameController {
         }
     }
 
+    // Retourne le bouton en fonction de ses coordonnées dans la grille
     private Button getNodeByCoordinate(Integer row, Integer column) {
         for (Node node : gameBoard.getChildren()) {
             if (node instanceof Button) {
@@ -152,6 +148,7 @@ public class GameController {
         return null;
     }
 
+    // Cherche si la partie est terminée
     private void checkWin() {
         if (game.grid.checkWin()) {
             equalityVBox.getStyleClass().remove("gray");
@@ -170,6 +167,7 @@ public class GameController {
         }
     }
 
+    // Met à jour les scores et les messages de fin de jeu
     void updateScore() {
         player1Score.setText(String.valueOf(player1.getScore()));
         if (settings.getIsOnePlayerMode()) {
@@ -183,6 +181,7 @@ public class GameController {
         } else {
             player2Text.setText(player2.getName());
         }
+        // Si la partie est terminée, on affiche le message de fin de jeu
         if (game.isOver) {
             msgEndGame.setVisible(true);
             msgEndGame.setDisable(false);
@@ -195,6 +194,7 @@ public class GameController {
         }
     }
 
+    // Affiche la ligne gagnante
     void showLine() {
         int[] res = game.grid.getWinningCases();
         for (int i = 0; i < res.length; i++) {
@@ -264,6 +264,7 @@ public class GameController {
         updateScore();
     }
 
+    // Set le premier joueur depuis les paramètres
     public void setFirstPlayer(String selectedFirstPlayer) {
         switch (selectedFirstPlayer) {
             case "Joueur 1" -> {
@@ -287,6 +288,7 @@ public class GameController {
         createGame();
     }
 
+    // Réinitialise les scores
     public void resetScore() {
         player1.resetScore();
         player2.resetScore();

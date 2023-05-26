@@ -12,6 +12,7 @@ public class Symbol {
         this.color = Color.WHITE;
     }
 
+    // Retourne le symbole
     public String getSymbol() {
         return symbol;
     }
@@ -36,13 +37,17 @@ public class Symbol {
         return true;
     }
 
+    // Change la couleur du symbole
     public void setColor(Color color) {
         this.color = color;
     }
 
+    // Retourne la couleur du symbole
     public Color getColor() {
         return color;
     }
+
+    // Retourne la couleur du symbole en RGB
     public int[] getRGB() {
         int[] rgb = new int[3];
         rgb[0] = (int) (color.getRed() * 255);
