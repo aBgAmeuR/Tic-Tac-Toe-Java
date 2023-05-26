@@ -69,12 +69,20 @@ public class SettingsController {
     @FXML
     public void handleApplyButton(ActionEvent actionEvent) {
         // Appliquer les changements aux paramètres du jeu
+        boolean checkIfRestScore = false;
+
         gameController.setFirstPlayer(firstPlayerComboBox.getValue());
         int sliderDifficultyLevelValue = (int) sliderDifficultyLevel.getValue() / 10;
+        if (sliderDifficultyLevelValue < 10 != (gameController.settings.getDifficultyLevel() == 1)) checkIfRestScore = true;
         gameController.settings.setDifficultyLevel(sliderDifficultyLevelValue < 10 ? 1 : 2);
 
         int sliderPlayerCountValue = (int) sliderPlayerCount.getValue() / 10;
+        if (sliderPlayerCountValue < 10 != gameController.settings.getIsOnePlayerMode()) checkIfRestScore = true;
         gameController.settings.setIsOnePlayerMode(sliderPlayerCountValue < 10);
+
+        if (checkIfRestScore) {
+            gameController.resetScore();
+        }
 
         gameController.player1.symbol.setColor(player1Color.getValue());
         gameController.player2.symbol.setColor(player2Color.getValue());

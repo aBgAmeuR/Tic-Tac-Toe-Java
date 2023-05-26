@@ -61,6 +61,9 @@ public class GameController {
     @FXML
     private Text player2Text;
 
+    @FXML
+    private Text player1Text;
+
 
     @FXML
     public void initialize() {
@@ -92,6 +95,14 @@ public class GameController {
         indicationCurrentPlayer();
         equalityVBox.getStyleClass().add("gray");
         updateScore();
+
+        if (game.getCurrentPlayer() instanceof Bot) {
+            int[] botMove = bot.play(game.grid, player1.getSymbol(), settings.getDifficultyLevel());
+            game.makeMove(botMove[0], botMove[1]);
+            Button botButton = getNodeByCoordinate(botMove[0], botMove[1]);
+            assert botButton != null;
+            placeSymbol(botButton, bot.getSymbol());
+        }
     }
 
     @FXML
@@ -243,6 +254,14 @@ public class GameController {
         settingsStage.setResizable(false);
 
         settingsStage.showAndWait();
+
+        if (settings.getIsOnePlayerMode()) {
+            player2Text.setText(bot.getName());
+        } else {
+            player2Text.setText(player2.getName());
+        }
+        player1Text.setText(player1.getName());
+        updateScore();
     }
 
     public void setFirstPlayer(String selectedFirstPlayer) {
@@ -252,7 +271,11 @@ public class GameController {
                 settings.setFirstPlayerIsRandom(false);
             }
             case "Joueur 2" -> {
-                settings.setFirstPlayer(player2);
+                if (settings.getIsOnePlayerMode()) {
+                    settings.setFirstPlayer(bot);
+                } else {
+                    settings.setFirstPlayer(player2);
+                }
                 settings.setFirstPlayerIsRandom(false);
             }
             case "Aléatoire" -> settings.setFirstPlayerIsRandom(true);
@@ -262,5 +285,13 @@ public class GameController {
     @FXML
     void replayGame(ActionEvent event) {
         createGame();
+    }
+
+    public void resetScore() {
+        player1.resetScore();
+        player2.resetScore();
+        bot.resetScore();
+        equalScore = 0;
+        updateScore();
     }
 }

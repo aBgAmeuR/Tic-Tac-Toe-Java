@@ -145,7 +145,7 @@
                      <children>
                         <HBox alignment="CENTER" spacing="5.0">
                            <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Joueur 1">
+                              <Text fx:id="player1Text" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Joueur 1">
                                  <font>
                                     <Font name="Bauhaus 93" size="18.0" />
                                  </font>
