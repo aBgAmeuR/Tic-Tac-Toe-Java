@@ -8,9 +8,10 @@
 5. [How to Run](#how-to-run)
 6. [Todo](#todo)
 7. [Screenshots](#screenshots)
-8. [Issues](#issues)
-9. [Contributing](#contributing)
-10. [License](#license)
+8. [Folder structure](#folder-structure)
+9. [Issues](#issues)
+10. [Contributing](#contributing)
+11. [License](#license)
 
 ## Introduction
 
@@ -73,27 +74,13 @@ Optional features:
 
 <p align="center">
   <img src="img/game.png" height="500px"></a>
-  <img src="img/settings.png" height="300px"></a>
+  <img src="img/settings.png" height="500px"></a>
 </p>
 <p align="center">
   <img src="img/rules.png" height="200px"></a>
 </p>
 
-## Issues
-
-Please report specific issues, bugs, or feature requests in our issue tracker.
-
-## Contributing
-
-Contributions are what make the open source community an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
-
-1. Fork the project.
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`).
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
-
-## License
-
-Distributed under the GNU General Public License v3.0. See `LICENSE` for more information.
+## Folder structure
 
 ```
 .
@@ -126,3 +113,20 @@ Distributed under the GNU General Public License v3.0. See `LICENSE` for more in
             ├── Rules.fxml
             └── Settings.fxml
 ```
+
+## Issues
+
+Please report specific issues, bugs, or feature requests in our issue tracker.
+
+## Contributing
+
+Contributions are what make the open source community an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
+
+1. Fork the project.
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`).
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
+
+## License
+
+Distributed under the GNU General Public License v3.0. See `LICENSE` for more information.
+
